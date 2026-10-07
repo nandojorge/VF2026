@@ -28,3 +28,12 @@ Branch: `backup/antes-pesquisa-contactos-2026-10-07` (commit `ff3db71`).
 A lista de contactos passa a pesquisar nome, telefone e email; ignora diferenças de maiúsculas e acentos no nome e separadores comuns no telefone. Durante uma pesquisa apresenta todos os resultados, independentemente da página anterior. A pesquisa e a página mantêm-se durante a sessão ao abrir um contacto e voltar; reiniciar a app limpa este estado.
 
 Validação: testes com dados fictícios para acentos, maiúsculas, email, telefone formatado, campos vazios, ausência de resultados e pesquisa iniciada na página 3. Na app local, pesquisa por nome sem acentos, telefone com espaços e abertura/regresso ao contacto passaram. Recursos e fluxos de outras páginas preservados; expressões da lista isoladas para não alterar outros ecrãs.
+
+## Antes da verificação reforçada de duplicados
+
+Branch: `backup/antes-duplicados-2026-10-07` (commit `12222fe`).
+A conversão de entradas atualiza primeiro a lista completa de contactos. Compara telefone sem separadores (incluindo equivalência entre número português de nove dígitos, +351 e 00351) e email sem maiúsculas ou espaços nas extremidades. Campos vazios não contam como correspondência.
+
+Quando encontra correspondências, permite abrir o primeiro contacto, voltar ao formulário ou confirmar explicitamente a criação de outro. Abrir o contacto mantém a entrada por tratar. Uma falha na consulta impede a criação e mantém o formulário.
+
+Validação: 15 cenários de normalização; comparação estrutural dos restantes fluxos, recursos e pedidos de gravação; teste local com contacto fictício, abertura da ficha e cancelamento dos dois avisos. O cancelamento preservou o formulário sem tentar gravar. Testes locais bloquearam todas as gravações; nenhum registo real foi criado.
