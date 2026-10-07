@@ -73,7 +73,7 @@
   };
   window.addEventListener('DOMContentLoaded', () => {
     const style = document.createElement('style');
-    style.textContent = '#vf-loading-status{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(420px,calc(100% - 32px));box-sizing:border-box;padding:16px 20px;border:1px solid #ddd;border-radius:12px;background:#fff;color:#333;box-shadow:0 4px 20px #0001;font:14px/1.5 system-ui,sans-serif;text-align:center;z-index:1000}#vf-loading-status p{margin:0}#vf-loading-status button{margin-top:12px;padding:10px 18px;border:0;border-radius:7px;background:#333;color:#fff;font:inherit;cursor:pointer}#vf-loading-status button:focus-visible{outline:3px solid #4686dd;outline-offset:3px}#vf-loading-status .vf-loading-hint{margin-top:8px;font-size:12px;color:#666}#vf-loading-status [hidden]{display:none}';
+    style.textContent = '#vf-loading-status{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(420px,calc(100% - 32px));box-sizing:border-box;padding:16px 20px;border:0;border-radius:0;background:transparent;color:rgb(50,51,57);box-shadow:none;font:200 16px/24px "Archivo Narrow_200",system-ui,sans-serif;text-align:center;z-index:1000}#vf-loading-status p{margin:0}#vf-loading-status button{margin-top:12px;padding:10px 18px;border:0;border-radius:7px;background:#333;color:#fff;font:inherit;cursor:pointer}#vf-loading-status button:focus-visible{outline:3px solid #4686dd;outline-offset:3px}#vf-loading-status .vf-loading-hint{margin-top:8px;font-size:14px;color:rgb(50,51,57)}#vf-loading-status [hidden]{display:none}';
     document.head.append(style);
     setInterval(update, 1000);
     update();
