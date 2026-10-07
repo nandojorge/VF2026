@@ -37,3 +37,10 @@ A conversão de entradas atualiza primeiro a lista completa de contactos. Compar
 Quando encontra correspondências, permite abrir o primeiro contacto, voltar ao formulário ou confirmar explicitamente a criação de outro. Abrir o contacto mantém a entrada por tratar. Uma falha na consulta impede a criação e mantém o formulário.
 
 Validação: 15 cenários de normalização; comparação estrutural dos restantes fluxos, recursos e pedidos de gravação; teste local com contacto fictício, abertura da ficha e cancelamento dos dois avisos. O cancelamento preservou o formulário sem tentar gravar. Testes locais bloquearam todas as gravações; nenhum registo real foi criado.
+
+## Antes da confirmação de gravação de novos contactos
+
+Branch: `backup/antes-confirmacao-gravacao-2026-10-07` (commit `9ca02f1`).
+Esta melhoria aplica-se ao formulário Novo Contacto (Page3). Mostra A guardar…, desativa o botão durante o fluxo e só confirma o sucesso depois dos pedidos necessários. Em caso de falha, mantém o formulário e permite retomar o pedido que falhou sem repetir os pedidos anteriores já confirmados. Se a resposta a um POST falhar, informa que o registo pode já existir e pede confirmação antes de repetir esse passo. Não há repetição automática de gravações. O ponto de retoma existe apenas enquanto o formulário permanece aberto; não recarregar a página para repetir uma gravação parcial.
+
+Validação: simulação de sucesso e falha em cada um dos 14 pedidos, retoma sem repetir pedidos anteriores, cancelamento da confirmação de repetição incerta, bloqueio de submissão concorrente e preservação dos campos. Teste no navegador com servidor local fictício: botão desativado durante a gravação, aviso de falha e retoma sem repetir o contador anterior. Recursos, conteúdos dos pedidos HTTP e fluxos das restantes páginas preservados. Nenhum pedido de gravação do teste foi enviado aos serviços reais.
