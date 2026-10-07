@@ -44,3 +44,16 @@ Branch: `backup/antes-confirmacao-gravacao-2026-10-07` (commit `9ca02f1`).
 Esta melhoria aplica-se ao formulário Novo Contacto (Page3). Mostra A guardar…, desativa o botão durante o fluxo e só confirma o sucesso depois dos pedidos necessários. Em caso de falha, mantém o formulário e permite retomar o pedido que falhou sem repetir os pedidos anteriores já confirmados. Se a resposta a um POST falhar, informa que o registo pode já existir e pede confirmação antes de repetir esse passo. Não há repetição automática de gravações. O ponto de retoma existe apenas enquanto o formulário permanece aberto; não recarregar a página para repetir uma gravação parcial.
 
 Validação: simulação de sucesso e falha em cada um dos 14 pedidos, retoma sem repetir pedidos anteriores, cancelamento da confirmação de repetição incerta, bloqueio de submissão concorrente e preservação dos campos. Teste no navegador com servidor local fictício: botão desativado durante a gravação, aviso de falha e retoma sem repetir o contador anterior. Recursos, conteúdos dos pedidos HTTP e fluxos das restantes páginas preservados. Nenhum pedido de gravação do teste foi enviado aos serviços reais.
+
+## Antes da edição rápida de leads
+
+Branch: `backup/antes-edicao-leads-rapida-2026-10-07` (commit `df3d6c4`).
+Depois de confirmar o PUT de edição, a app atualiza os quatro campos enviados na lead local e regressa à ficha sem aguardar a releitura da lista. A gravação usa uma cópia dos valores submetidos. Os restantes campos e registos mantêm-se.
+
+A leitura de reconciliação continua em segundo plano para recuperar campos calculados pelo servidor. Só incorpora a lead quando os quatro campos do servidor correspondem à gravação pendente e os valores locais ainda correspondem a essa gravação. Uma resposta antiga não substitui uma edição mais recente. Leituras falhadas ou ainda desatualizadas ficam pendentes e voltam a ser tentadas ao abrir o painel. Esta melhoria reduz a espera antes de regressar à ficha; não elimina a leitura de reconciliação nem reduz o tempo do PUT no serviço externo.
+
+Se não houver uma lead correspondente na lista local, mantém-se a leitura completa antes do regresso. Se essa leitura falhar depois de gravar, Atualizar lista repete apenas a leitura. Falhas na gravação mantêm os campos e não alteram a lista local. O botão fica desativado durante o pedido.
+
+Validação: payload equivalente ao original; campos e registos não editados preservados; códigos numéricos e textuais; motivo limpo quando aplicável; falha de PUT; lista ausente; falha da leitura alternativa e repetição sem novo PUT; bloqueio concorrente; reconciliação de campos calculados; resposta antiga e edição mais recente protegidas. Navegador com serviços fictícios e pedidos externos bloqueados: estado local atualizado, botão desativado, reconciliação concluída e navegação para outro ecrã antes de terminar a leitura artificialmente lenta (3 segundos). Recursos existentes e restantes fluxos preservados; adicionada apenas uma leitura condicional ao foco do painel.
+
+Referência de semântica do PUT: https://docs.steinhq.com/update-rows (campos omitidos mantêm-se; resposta devolve o intervalo atualizado).
