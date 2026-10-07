@@ -66,7 +66,7 @@
           : completed
             ? `A preparar a app. Pedidos concluídos: ${completed}.`
             : 'A carregar os dados da app…';
-    const originalStatus = document.getElementById('__next').innerText.replace(/vivusfisioapp/ig, '').replace(/4\.0\.42/g, '').trim();
+    const originalStatus = document.getElementById('__next').textContent.replace(/vivusfisioapp/ig, '').replace(/4\.0\.42/g, '').trim();
     const stageText = originalStatus && !/^a carregar dados$/i.test(originalStatus) ? `Estado da app: ${originalStatus}` : '';
     if (stage.textContent !== stageText) stage.textContent = stageText;
     const centralText = !failures && !slow && originalStatus && !/^a carregar dados$/i.test(originalStatus) ? originalStatus : text;
