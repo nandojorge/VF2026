@@ -21,3 +21,10 @@ Branch: `backup/antes-recuperacao-2026-10-07` (commit `2f1273e`).
 A recuperação automática repete apenas leituras falhadas no arranque, após 5 segundos; não repete gravações. O painel aguarda também a lista de verificação de contactos duplicados.
 
 Validação: falha HTTP 404 simulada numa leitura de contactos; nova tentativa aos 5 segundos, resposta 200 e abertura do painel. As restantes sete leituras foram executadas uma única vez e os indicadores mantiveram os valores da referência. As definições dos recursos e os restantes fluxos foram preservados.
+
+## Antes da pesquisa alargada de contactos
+
+Branch: `backup/antes-pesquisa-contactos-2026-10-07` (commit `ff3db71`).
+A lista de contactos passa a pesquisar nome, telefone e email; ignora diferenças de maiúsculas e acentos no nome e separadores comuns no telefone. Durante uma pesquisa apresenta todos os resultados, independentemente da página anterior. A pesquisa e a página mantêm-se durante a sessão ao abrir um contacto e voltar; reiniciar a app limpa este estado.
+
+Validação: testes com dados fictícios para acentos, maiúsculas, email, telefone formatado, campos vazios, ausência de resultados e pesquisa iniciada na página 3. Na app local, pesquisa por nome sem acentos, telefone com espaços e abertura/regresso ao contacto passaram. Recursos e fluxos de outras páginas preservados; expressões da lista isoladas para não alterar outros ecrãs.
