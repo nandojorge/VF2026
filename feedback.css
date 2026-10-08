@@ -1,0 +1,11 @@
+@font-face{font-family:VivusFeedback;src:url('_next/static/chunks/fonts/Archivo__Narrow-796c9858d3b437ee567e7fea9f2687d0.ttf') format('truetype');font-display:swap}
+.vf-feedback-overlay{position:fixed;inset:0;z-index:2147483600;display:flex;align-items:center;justify-content:center;background:rgba(35,49,56,.35);padding:16px;box-sizing:border-box}
+.vf-feedback-dialog{font-family:VivusFeedback,'Arial Narrow',Arial,sans-serif;color:#323339;background:#fff;border-radius:18px;box-shadow:0 14px 45px #243c4026;width:100%;max-width:400px;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);display:flex;flex-direction:column;overflow:hidden;box-sizing:border-box}
+.vf-feedback-content{padding:26px 24px 20px;overflow:auto;min-height:0;overscroll-behavior:contain;overflow-wrap:anywhere}
+.vf-feedback-dialog h2{font:normal 26px/1.2 VivusFeedback,'Arial Narrow',Arial,sans-serif;margin:0 0 14px;color:#405e54}
+.vf-feedback-dialog p{font:normal 19px/1.45 VivusFeedback,'Arial Narrow',Arial,sans-serif;margin:0;white-space:pre-wrap}
+.vf-feedback-actions{display:flex;flex-wrap:wrap;gap:10px;padding:0 24px 24px;flex-shrink:0}
+.vf-feedback-actions button{font:normal 19px/1.2 VivusFeedback,'Arial Narrow',Arial,sans-serif;background:#6d9181;color:#fff;border:1px solid #6d9181;border-radius:10px;min-height:48px;flex:1 1 110px;padding:11px 14px;cursor:pointer;overflow-wrap:anywhere}
+.vf-feedback-actions button.vf-feedback-secondary{background:#fff;color:#526c61;border-color:#c2d0c8}
+.vf-feedback-actions button:focus-visible{outline:3px solid #7abac9;outline-offset:3px}
+.vf-feedback-toast{position:fixed;bottom:20px;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:2147483599;box-sizing:border-box;width:max-content;max-width:calc(100% - 32px);padding:14px 20px;border-radius:12px;background:#405e54;color:white;font:normal 18px/1.35 VivusFeedback,'Arial Narrow',Arial,sans-serif;box-shadow:0 4px 18px #243c4026;overflow-wrap:anywhere;text-align:center;pointer-events:auto}
