@@ -1,0 +1,6 @@
+.vf-draft-bar{box-sizing:border-box;max-width:572px;margin:10px auto;padding:14px 16px;background:#edf3ef;color:#405e54;border-radius:12px;font-family:'Archivo Narrow';display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.vf-draft-bar p{flex:1 1 100%;margin:0;font:normal 17px/1.4 'Archivo Narrow'}
+.vf-draft-bar button{font:normal 17px/1.2 'Archivo Narrow';min-height:44px;padding:10px 14px;background:#6d9181;color:white;border:1px solid #6d9181;border-radius:9px;cursor:pointer}
+.vf-draft-bar button.vf-draft-discard{background:transparent;color:#405e54}
+.vf-draft-bar button:focus-visible{outline:3px solid #7abac9;outline-offset:2px}
+@media(max-width:604px){.vf-draft-bar{margin:10px 16px}}
