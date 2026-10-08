@@ -91,7 +91,7 @@
   };
   window.addEventListener('DOMContentLoaded', () => {
     const style = document.createElement('style');
-    style.textContent = '#vf-loading-status{position:relative;width:100%;max-width:420px;margin:0 auto;flex-shrink:0;box-sizing:border-box;padding:0;border:0!important;border-radius:0!important;background:transparent!important;color:rgb(50,51,57);box-shadow:none!important;font:200 16px/24px "Archivo Narrow_200",system-ui,sans-serif;text-align:center;z-index:1000}#vf-loading-status p{margin:0}#vf-loading-status button{margin-top:12px;padding:10px 18px;border:0;border-radius:7px;background:#333;color:#fff;font:inherit;cursor:pointer}#vf-loading-status button:focus-visible{outline:3px solid #4686dd;outline-offset:3px}#vf-loading-status .vf-loading-hint{margin-top:8px;font-size:14px;color:rgb(50,51,57)}#vf-loading-status [hidden]{display:none}';
+    style.textContent = '#vf-loading-status{position:relative;width:100%;max-width:420px;margin:0 auto;flex-shrink:0;box-sizing:border-box;padding:0;border:0!important;border-radius:0!important;background:transparent!important;color:rgb(50,51,57);box-shadow:none!important;font:200 16px/24px "Archivo Narrow";text-align:center;z-index:1000}#vf-loading-status p{margin:0}#vf-loading-status button{margin-top:12px;padding:10px 18px;border:0;border-radius:7px;background:#333;color:#fff;font:inherit;cursor:pointer}#vf-loading-status button:focus-visible{outline:3px solid #4686dd;outline-offset:3px}#vf-loading-status .vf-loading-hint{margin-top:8px;font-size:14px;color:rgb(50,51,57)}#vf-loading-status [hidden]{display:none}';
     document.head.append(style);
     setInterval(update, 1000);
     update();
