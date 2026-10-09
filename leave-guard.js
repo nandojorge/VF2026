@@ -81,5 +81,5 @@
       ask().then(function(ok){pendingPop=false;if(ok){if(active)active.suppressed=true;active=null;allowedPop=true;go(-delta);}});
     },10);
   },true);
-  window.vfLeave={observe:observe,changed:changed,navigate:navigate,router:function(r){singleton=r;install();}};
+  window.vfLeave={isDirty:dirty,observe:observe,changed:changed,navigate:navigate,router:function(r){singleton=r;install();}};
 }());

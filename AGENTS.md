@@ -2,7 +2,7 @@
 
 - Preservar todas as funcionalidades da app nas otimizações.
 - Antes de cada alteração publicada, guardar um ponto de recuperação no GitHub e documentá-lo em RECUPERACAO.md.
-- Em cada atualização da app, incrementar o número de versão visível no arranque. A versão atual é 4.0.66; o valor está em `buildVersion` no bundle `_next/static/chunks/pages/_app-f6904a460351655b.js`. Incrementar o último número na próxima atualização, salvo indicação diferente do utilizador.
+- Em cada atualização da app, incrementar o número de versão visível no arranque. A versão atual é 4.0.67; o valor está em `buildVersion` no bundle `_next/static/chunks/pages/_app-f6904a460351655b.js`. Incrementar o último número na próxima atualização, salvo indicação diferente do utilizador.
 - Atualizar também a versão de cache dos scripts nos ficheiros HTML e verificar a publicação no GitHub Pages.
 - Usar dados fictícios nos testes de gravação.
 - Prioridade de interface: funcionamento mobile, elegante e sem falhas; desktop pode manter o mesmo formato mobile centrado. Preservar todos os menus, campos e ações.
@@ -11,4 +11,6 @@
 
 - Não guardar rascunhos dos formulários. Pedir confirmação para abandonar alterações por guardar, com fontes originais; usar o aviso nativo no fecho/recarga.
 
-- No final de cada alteração, abrir sempre a nova versão publicada no browser integrado do Codex.
+- No final de cada alteração, atualizar sempre a nova versão publicada no separador já aberto do browser integrado do Codex, sem criar novos separadores.
+
+- Em cada publicação, atualizar também version.json para a versão publicada; o aviso verifica esse ficheiro sem cache.

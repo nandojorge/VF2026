@@ -207,3 +207,8 @@ Verificação: check-contact-search.cjs cobre 905/9052, espaços, zeros, nome co
 Ponto de recuperação: `backup/antes-ordenacao-pesquisa-4.0.66` (0f9fb2c).
 Ordena resultados numéricos por correspondência exata do número de cliente, início do número, sequência no meio e outras correspondências (como telefone). Preserva todos os resultados e a ordem original entre resultados com a mesma relevância. Sem pesquisa numérica, a ordem anterior mantém-se. Ordenação sobre uma nova lista; não modifica a coleção de origem. Sem mudanças em design, APIs ou gravações.
 Verificação: check-contact-search.cjs cobre relevância, estabilidade, pesquisa parcial, zeros e espaços, nome, telefone, email e mensagem sem resultados; check-app.cjs aprovado. Chrome mobile a 360 px confirmou ordem 905, 9053, 9052, 19052 com dados fictícios. Versão e cache: 4.0.66.
+
+## Versão 4.0.67 — aviso de nova versão
+Ponto de recuperação: `backup/antes-aviso-nova-versao-4.0.67` (4d3c222).
+Adiciona aviso discreto com fontes originais quando version.json anuncia uma versão superior. Verifica no arranque, no regresso ao separador e uma vez por minuto enquanto visível. Sem recarga automática. O botão Atualizar abre o arranque da app; fica desativado enquanto a proteção existente deteta alterações por guardar, e volta a verificar no clique. Não grava rascunhos nem altera APIs de dados. Não funciona retroativamente em separadores que ainda não carregaram esta versão.
+Verificação: check-update-notice.cjs cobre versão igual/inferior/inválida, falha de ligação, formulário editado, desbloqueio após guardar e nova verificação no clique; check-leave-guard.cjs e check-app.cjs aprovados. Chrome mobile 360 px confirmou aviso com versão futura simulada e dados fictícios. Versão e cache: 4.0.67.
