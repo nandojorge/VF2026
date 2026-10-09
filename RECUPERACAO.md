@@ -197,3 +197,8 @@ Ponto de recuperação: `backup/antes-sincronizacao-acoes-4.0.64` (7e5a943).
 A análise das aberturas de contactos, leads e ações confirmou que usam listas em memória, sem leituras HTTP próprias ao montar. Entradas mantêm a consulta atualizada existente. Identificou-se no início uma duplicação condicional: os fluxos de ações editadas e novas podiam consultar a mesma coleção de ações abertas simultaneamente.
 Os dois percursos passam a um fluxo com uma leitura, seguida de verificações e fusões sequenciais. Sem pendências não faz pedido. Mantém os critérios de confirmação, as pendências em caso de falha ou divergência e a atualização dos contadores. Não altera endpoints, formulários, gravações ou design.
 Verificação: check-action-sync.cjs cobre nenhuma/uma/ambas pendências, leitura única, fusões, falha, ausência e divergência do registo remoto; check-app.cjs e check-list-memory.cjs aprovados. Redução de dois para um pedido apenas no cenário simultâneo; não foi medido ganho em segundos em produção. Versão e cache: 4.0.64.
+
+## Versão 4.0.65 — pesquisar parte do número de cliente
+Ponto de recuperação: `backup/antes-numero-cliente-parcial-4.0.65` (119e27c).
+Substitui a comparação exata do número por correspondência parcial, mantendo a normalização de espaços e zeros iniciais. A pesquisa 905 inclui 9052. Atualiza também a condição de pesquisa sem resultados. Pesquisa por nome, telefone e email preservada; sem alterações a gravações ou design.
+Verificação: check-contact-search.cjs cobre 905/9052, espaços, zeros, nome com acentos, telefone, email e mensagem sem resultados; check-app.cjs aprovado. Chrome mobile 360 px com dados fictícios confirmou 100 a devolver 1001, 1002 e seguintes. Versão e cache: 4.0.65.
