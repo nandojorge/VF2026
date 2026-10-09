@@ -186,3 +186,8 @@ Verificação offline: códigos 9001/90012, espaços e zeros iniciais, comparaç
 Ponto de recuperação: `backup/antes-limpar-pesquisa-4.0.62` (e2bc0a9).
 Adiciona × às barras de pesquisa de contactos e contactos arquivados, apenas quando têm texto. Área de toque de 44 px, fontes originais e foco mantido no campo. A limpeza atualiza o valor usado pela pesquisa; no controlo nativo dos arquivados também limpa o estado interno através de um evento específico. Não acrescenta botões aos campos dos formulários.
 Verificação: check-app.cjs, check-list-memory.cjs, sintaxe JavaScript e diff aprovados. Chrome mobile a 360 px com contactos fictícios: pesquisa por número e limpeza repõem a lista; arquivados apagam o texto sem reaparecer. Sem gravações reais. Versão visível e cache HTML: 4.0.62.
+
+## Versão 4.0.63 — pesquisa sem resultados
+Ponto de recuperação: `backup/antes-pesquisa-sem-resultados-4.0.63` (9f027af).
+Na pesquisa principal de contactos, mostra “Nenhum contacto encontrado” quando o texto pesquisado não tem correspondências, com botão Limpar pesquisa. Usa a expressão original da lista, preserva o texto e as fontes originais, e repõe a lista completa ao limpar. Sem mudanças nos pedidos ou gravações.
+Verificação: check-app.cjs, check-list-memory.cjs, sintaxe e diff aprovados; Chrome mobile 360 px com dados fictícios confirmou mensagem, texto mantido, botão e regresso à lista. Versão e cache: 4.0.63.
