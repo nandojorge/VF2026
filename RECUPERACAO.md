@@ -212,3 +212,8 @@ Verificação: check-contact-search.cjs cobre relevância, estabilidade, pesquis
 Ponto de recuperação: `backup/antes-aviso-nova-versao-4.0.67` (4d3c222).
 Adiciona aviso discreto com fontes originais quando version.json anuncia uma versão superior. Verifica no arranque, no regresso ao separador e uma vez por minuto enquanto visível. Sem recarga automática. O botão Atualizar abre o arranque da app; fica desativado enquanto a proteção existente deteta alterações por guardar, e volta a verificar no clique. Não grava rascunhos nem altera APIs de dados. Não funciona retroativamente em separadores que ainda não carregaram esta versão.
 Verificação: check-update-notice.cjs cobre versão igual/inferior/inválida, falha de ligação, formulário editado, desbloqueio após guardar e nova verificação no clique; check-leave-guard.cjs e check-app.cjs aprovados. Chrome mobile 360 px confirmou aviso com versão futura simulada e dados fictícios. Versão e cache: 4.0.67.
+
+## Versão 4.0.68 — ocultar botão durante submissão
+Ponto de recuperação: `backup/antes-ocultar-submeter-4.0.68` (c91490a).
+Nos dez botões com controlo de gravação, o botão desaparece enquanto a operação está ativa. Mantém texto simples de progresso na mesma zona, com a fonte original. Quando o estado de gravação é libertado, reaplica a condição original de visibilidade, preservando tentar novamente/retomar. Não altera fluxos, pedidos, cargas ou condições de validação.
+Verificação: check-app.cjs e check-entries.cjs aprovados; comparação estrutural confirmou lógica e recursos idênticos; avaliadas as dez condições durante gravação. Prévia local com dados fictícios confirmou texto “A guardar pagamento…” sem botão. Versão e cache: 4.0.68.
