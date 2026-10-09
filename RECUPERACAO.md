@@ -191,3 +191,9 @@ Verificação: check-app.cjs, check-list-memory.cjs, sintaxe JavaScript e diff a
 Ponto de recuperação: `backup/antes-pesquisa-sem-resultados-4.0.63` (9f027af).
 Na pesquisa principal de contactos, mostra “Nenhum contacto encontrado” quando o texto pesquisado não tem correspondências, com botão Limpar pesquisa. Usa a expressão original da lista, preserva o texto e as fontes originais, e repõe a lista completa ao limpar. Sem mudanças nos pedidos ou gravações.
 Verificação: check-app.cjs, check-list-memory.cjs, sintaxe e diff aprovados; Chrome mobile 360 px com dados fictícios confirmou mensagem, texto mantido, botão e regresso à lista. Versão e cache: 4.0.63.
+
+## Versão 4.0.64 — leitura partilhada na sincronização de ações
+Ponto de recuperação: `backup/antes-sincronizacao-acoes-4.0.64` (7e5a943).
+A análise das aberturas de contactos, leads e ações confirmou que usam listas em memória, sem leituras HTTP próprias ao montar. Entradas mantêm a consulta atualizada existente. Identificou-se no início uma duplicação condicional: os fluxos de ações editadas e novas podiam consultar a mesma coleção de ações abertas simultaneamente.
+Os dois percursos passam a um fluxo com uma leitura, seguida de verificações e fusões sequenciais. Sem pendências não faz pedido. Mantém os critérios de confirmação, as pendências em caso de falha ou divergência e a atualização dos contadores. Não altera endpoints, formulários, gravações ou design.
+Verificação: check-action-sync.cjs cobre nenhuma/uma/ambas pendências, leitura única, fusões, falha, ausência e divergência do registo remoto; check-app.cjs e check-list-memory.cjs aprovados. Redução de dois para um pedido apenas no cenário simultâneo; não foi medido ganho em segundos em produção. Versão e cache: 4.0.64.
