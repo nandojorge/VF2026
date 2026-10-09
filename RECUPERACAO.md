@@ -202,3 +202,8 @@ Verificação: check-action-sync.cjs cobre nenhuma/uma/ambas pendências, leitur
 Ponto de recuperação: `backup/antes-numero-cliente-parcial-4.0.65` (119e27c).
 Substitui a comparação exata do número por correspondência parcial, mantendo a normalização de espaços e zeros iniciais. A pesquisa 905 inclui 9052. Atualiza também a condição de pesquisa sem resultados. Pesquisa por nome, telefone e email preservada; sem alterações a gravações ou design.
 Verificação: check-contact-search.cjs cobre 905/9052, espaços, zeros, nome com acentos, telefone, email e mensagem sem resultados; check-app.cjs aprovado. Chrome mobile 360 px com dados fictícios confirmou 100 a devolver 1001, 1002 e seguintes. Versão e cache: 4.0.65.
+
+## Versão 4.0.66 — relevância da pesquisa numérica
+Ponto de recuperação: `backup/antes-ordenacao-pesquisa-4.0.66` (0f9fb2c).
+Ordena resultados numéricos por correspondência exata do número de cliente, início do número, sequência no meio e outras correspondências (como telefone). Preserva todos os resultados e a ordem original entre resultados com a mesma relevância. Sem pesquisa numérica, a ordem anterior mantém-se. Ordenação sobre uma nova lista; não modifica a coleção de origem. Sem mudanças em design, APIs ou gravações.
+Verificação: check-contact-search.cjs cobre relevância, estabilidade, pesquisa parcial, zeros e espaços, nome, telefone, email e mensagem sem resultados; check-app.cjs aprovado. Chrome mobile a 360 px confirmou ordem 905, 9053, 9052, 19052 com dados fictícios. Versão e cache: 4.0.66.
