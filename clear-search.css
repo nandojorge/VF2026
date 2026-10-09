@@ -1,0 +1,6 @@
+.vf-search-clear-holder{position:relative}
+.vf-search-clear-input{padding-right:44px!important}
+.vf-search-clear{position:absolute;right:0;top:50%;transform:translateY(-50%);width:44px;height:44px;min-width:44px;padding:0;border:0;border-radius:50%;background:transparent;color:#7d818d;font-family:"Archivo Narrow";font-size:28px;line-height:1;cursor:pointer;touch-action:manipulation;display:flex;align-items:center;justify-content:center}
+.vf-search-clear[hidden]{display:none}
+.vf-search-clear:focus-visible{outline:2px solid #6e8a7e;outline-offset:-4px}
+.vf-search-clear:active{background:rgba(110,138,126,.12)}

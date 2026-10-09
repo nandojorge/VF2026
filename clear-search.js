@@ -1,0 +1,13 @@
+/* One-tap clearing for the app's two search fields only. */
+(function () {
+  'use strict';
+  var scheduled=false,controls=[];
+  function search(input){var page=location.pathname;return /page\.Page1\.html$/.test(page)&&input.placeholder==='Nº cliente, nome, telefone ou email'||/page\.Page2\.html$/.test(page)&&input.placeholder==='nome';}
+  function update(control){control.button.hidden=!control.input.value;if(control.button.disabled!==control.input.disabled)control.button.disabled=control.input.disabled;}
+  function scan(){scheduled=false;controls=controls.filter(function(c){return c.input.isConnected&&c.button.isConnected;});document.querySelectorAll('input').forEach(function(input){if(!search(input)||controls.some(function(c){return c.input===input;}))return;var holder=input.parentElement;if(!holder)return;var button=document.createElement('button');button.type='button';button.className='vf-search-clear';button.setAttribute('aria-label','Limpar pesquisa');button.title='Limpar pesquisa';button.textContent='×';holder.classList.add('vf-search-clear-holder');input.classList.add('vf-search-clear-input');holder.appendChild(button);var control={input:input,button:button};controls.push(control);button.addEventListener('pointerdown',function(event){event.preventDefault();});button.addEventListener('click',function(){var archived=/page\.Page2\.html$/.test(location.pathname);var setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;setter.call(input,'');if(archived){input.dispatchEvent(new CustomEvent("vf-clear-search",{bubbles:true}));}else{input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));}input.focus();update(control);});update(control);});controls.forEach(update);}
+  function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(scan);}}
+  document.addEventListener('input',schedule,true);document.addEventListener('change',schedule,true);
+  new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['value','disabled']});
+  // Restored controlled values may change only the DOM property, without a mutation.
+  setInterval(function(){controls.forEach(update);},250);schedule();
+})();

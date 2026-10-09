@@ -181,3 +181,8 @@ Verificação: check-list-memory.cjs testa pesquisa/página/scroll, isolamento d
 Ponto de recuperação: `backup/antes-pesquisa-numero-cliente-4.0.61` (2a87c0f).
 Acrescenta correspondência exata pelo codigocontacto à pesquisa da lista de contactos (Page1), mantendo nome, telefone e email. Aceita códigos numéricos ou em texto, espaços e zeros iniciais; um código parcial não coincide pelo número de cliente, mas as correspondências originais por telefone/nome/email continuam válidas. Atualiza a indicação do campo e o seletor do texto de pesquisa na memória de listas. Preserva layout, fontes, paginação, pedidos e fluxos.
 Verificação offline: códigos 9001/90012, espaços e zeros iniciais, comparação do comportamento anterior por nome/telefone/email e lista sem pesquisa; todos os fluxos e recursos idênticos. check-app.cjs e check-list-memory.cjs aprovados. Nenhuma gravação real. Versão/cache HTML: 4.0.61.
+
+## Versão 4.0.62 — limpar pesquisas com um toque
+Ponto de recuperação: `backup/antes-limpar-pesquisa-4.0.62` (e2bc0a9).
+Adiciona × às barras de pesquisa de contactos e contactos arquivados, apenas quando têm texto. Área de toque de 44 px, fontes originais e foco mantido no campo. A limpeza atualiza o valor usado pela pesquisa; no controlo nativo dos arquivados também limpa o estado interno através de um evento específico. Não acrescenta botões aos campos dos formulários.
+Verificação: check-app.cjs, check-list-memory.cjs, sintaxe JavaScript e diff aprovados. Chrome mobile a 360 px com contactos fictícios: pesquisa por número e limpeza repõem a lista; arquivados apagam o texto sem reaparecer. Sem gravações reais. Versão visível e cache HTML: 4.0.62.
