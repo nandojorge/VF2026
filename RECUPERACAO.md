@@ -217,3 +217,8 @@ Verificação: check-update-notice.cjs cobre versão igual/inferior/inválida, f
 Ponto de recuperação: `backup/antes-ocultar-submeter-4.0.68` (c91490a).
 Nos dez botões com controlo de gravação, o botão desaparece enquanto a operação está ativa. Mantém texto simples de progresso na mesma zona, com a fonte original. Quando o estado de gravação é libertado, reaplica a condição original de visibilidade, preservando tentar novamente/retomar. Não altera fluxos, pedidos, cargas ou condições de validação.
 Verificação: check-app.cjs e check-entries.cjs aprovados; comparação estrutural confirmou lógica e recursos idênticos; avaliadas as dez condições durante gravação. Prévia local com dados fictícios confirmou texto “A guardar pagamento…” sem botão. Versão e cache: 4.0.68.
+
+## Versão 4.0.69 — verificar conflitos na edição de contactos
+Ponto de recuperação: `backup/antes-conflitos-contactos-4.0.69` (8d76984).
+Antes de escrever a edição de contactos (Page5), lê a coleção atual e compara os nove campos editáveis com os parâmetros originais. Diferenças, registo ausente ou duplicado bloqueiam a escrita e mostram aviso. Falhas de leitura também bloqueiam. Os campos preenchidos são mantidos e o botão é libertado. Uma atualização já igual à pretendida permite continuar a retoma. Gravações e integração originais preservadas.
+Verificação: check-contact-conflicts.cjs, check-app.cjs e check-leave-guard.cjs aprovados; sem gravações reais. Limitação: comparação antes da escrita, sem bloqueio atómico do servidor; não impede uma alteração entre leitura e escrita. Acrescenta uma leitura à gravação. Versão e cache: 4.0.69.
