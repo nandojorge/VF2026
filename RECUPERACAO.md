@@ -227,3 +227,6 @@ Verificação: check-contact-conflicts.cjs, check-app.cjs e check-leave-guard.cj
 Ponto de recuperação: `backup/antes-resposta-botoes-4.0.70` (versão 4.0.69).
 Resposta visual no toque e durante 220 ms após clique, incluindo teclado. Deslocar para fazer scroll ou cancelar o toque elimina o efeito. Controlos desativados são excluídos. Sem alterações aos pedidos, validações, fontes, ícones ou contratos de gravação. O efeito confirma o toque, não o sucesso da operação.
 Validação: análise sintática do script, verificação da app e testes dos conflitos de contactos.
+
+## 4.0.71 — carregamento automático no arranque
+Backup: `backup/antes-arranque-automatico-4.0.71`. Ao montar o menu Page11 numa sessão nova, abre o carregamento Page20. A variável de sessão vfStartupReady só fica verdadeira no fim do carregamento, antes de abrir o menu. Regressar ao menu não recarrega; tocar no símbolo mantém a atualização manual. Sem cache persistente nem alterações nos pedidos. Validação offline do arranque e da app.
