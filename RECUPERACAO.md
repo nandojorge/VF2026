@@ -222,3 +222,8 @@ Verificação: check-app.cjs e check-entries.cjs aprovados; comparação estrutu
 Ponto de recuperação: `backup/antes-conflitos-contactos-4.0.69` (8d76984).
 Antes de escrever a edição de contactos (Page5), lê a coleção atual e compara os nove campos editáveis com os parâmetros originais. Diferenças, registo ausente ou duplicado bloqueiam a escrita e mostram aviso. Falhas de leitura também bloqueiam. Os campos preenchidos são mantidos e o botão é libertado. Uma atualização já igual à pretendida permite continuar a retoma. Gravações e integração originais preservadas.
 Verificação: check-contact-conflicts.cjs, check-app.cjs e check-leave-guard.cjs aprovados; sem gravações reais. Limitação: comparação antes da escrita, sem bloqueio atómico do servidor; não impede uma alteração entre leitura e escrita. Acrescenta uma leitura à gravação. Versão e cache: 4.0.69.
+
+## 4.0.70 — resposta imediata dos botões
+Ponto de recuperação: `backup/antes-resposta-botoes-4.0.70` (versão 4.0.69).
+Resposta visual no toque e durante 220 ms após clique, incluindo teclado. Deslocar para fazer scroll ou cancelar o toque elimina o efeito. Controlos desativados são excluídos. Sem alterações aos pedidos, validações, fontes, ícones ou contratos de gravação. O efeito confirma o toque, não o sucesso da operação.
+Validação: análise sintática do script, verificação da app e testes dos conflitos de contactos.
