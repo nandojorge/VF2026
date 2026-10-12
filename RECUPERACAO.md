@@ -236,3 +236,6 @@ Backup: `backup/antes-submissao-concelhos-4.0.72`. Resposta visual ao clique em 
 
 ## 4.0.73 — preparação das sessões e edição de faturas
 Backup: `backup/antes-sessoes-faturas-4.0.73`. Sessão editada: consulta fisioterapeutas antes de resolver email, comparação normalizada, rejeição controlada de email ausente antes de qualquer escrita. Edição só da fatura não exige nem atualiza despesa; alterações financeiras continuam a exigir o identificador. Data de fatura ausente enviada como vazio, sem formatar null. Mantidos caminhos de recuperação e confirmação. Não efetuadas gravações reais nos testes; consultas externas apenas de leitura. A causa exata das imagens não foi reproduzida; proteções corrigem falhas identificadas no código.
+
+## 4.0.74 — confirmação da persistência da fatura
+Backup: `backup/antes-confirmacao-fatura-4.0.74`. Após editar um pagamento, consulta apenas o seu identificador (limite 2 para detetar duplicados). Confirma número de fatura e opção fatura antes de atualizar despesas/listas e sair. Se faltar confirmação, mantém os campos e desbloqueia a repetição idempotente da alteração. Sem escritas reais na investigação. Consulta autorizada do cliente 9074 confirmou pagamento 405751 sem número; causa do não armazenamento ainda não reproduzida. Testes fictícios de confirmação, divergência, resposta inválida e registos duplicados.
