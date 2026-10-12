@@ -230,3 +230,6 @@ Validação: análise sintática do script, verificação da app e testes dos co
 
 ## 4.0.71 — carregamento automático no arranque
 Backup: `backup/antes-arranque-automatico-4.0.71`. Ao montar o menu Page11 numa sessão nova, abre o carregamento Page20. A variável de sessão vfStartupReady só fica verdadeira no fim do carregamento, antes de abrir o menu. Regressar ao menu não recarrega; tocar no símbolo mantém a atualização manual. Sem cache persistente nem alterações nos pedidos. Validação offline do arranque e da app.
+
+## 4.0.72 — submissão e concelhos
+Backup: `backup/antes-submissao-concelhos-4.0.72`. Resposta visual ao clique em Submeter nos formulários Page3/Page29, sem antecipar sucesso; verificação de duplicados integrada no estado ocupado. Correspondência exata de morada/localidade e concelho normalizada (maiúsculas, espaços e acentos), preservando nomes oficiais e seleções manuais. Moradas completas sem correspondência exata mantêm seleção manual, evitando atribuições ambíguas. Fontes originais. Verificações offline da app, entradas e duplicados.
