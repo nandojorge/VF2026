@@ -233,3 +233,6 @@ Backup: `backup/antes-arranque-automatico-4.0.71`. Ao montar o menu Page11 numa 
 
 ## 4.0.72 — submissão e concelhos
 Backup: `backup/antes-submissao-concelhos-4.0.72`. Resposta visual ao clique em Submeter nos formulários Page3/Page29, sem antecipar sucesso; verificação de duplicados integrada no estado ocupado. Correspondência exata de morada/localidade e concelho normalizada (maiúsculas, espaços e acentos), preservando nomes oficiais e seleções manuais. Moradas completas sem correspondência exata mantêm seleção manual, evitando atribuições ambíguas. Fontes originais. Verificações offline da app, entradas e duplicados.
+
+## 4.0.73 — preparação das sessões e edição de faturas
+Backup: `backup/antes-sessoes-faturas-4.0.73`. Sessão editada: consulta fisioterapeutas antes de resolver email, comparação normalizada, rejeição controlada de email ausente antes de qualquer escrita. Edição só da fatura não exige nem atualiza despesa; alterações financeiras continuam a exigir o identificador. Data de fatura ausente enviada como vazio, sem formatar null. Mantidos caminhos de recuperação e confirmação. Não efetuadas gravações reais nos testes; consultas externas apenas de leitura. A causa exata das imagens não foi reproduzida; proteções corrigem falhas identificadas no código.
