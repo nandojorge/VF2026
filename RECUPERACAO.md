@@ -239,3 +239,6 @@ Backup: `backup/antes-sessoes-faturas-4.0.73`. Sessão editada: consulta fisiote
 
 ## 4.0.74 — confirmação da persistência da fatura
 Backup: `backup/antes-confirmacao-fatura-4.0.74`. Após editar um pagamento, consulta apenas o seu identificador (limite 2 para detetar duplicados). Confirma número de fatura e opção fatura antes de atualizar despesas/listas e sair. Se faltar confirmação, mantém os campos e desbloqueia a repetição idempotente da alteração. Sem escritas reais na investigação. Consulta autorizada do cliente 9074 confirmou pagamento 405751 sem número; causa do não armazenamento ainda não reproduzida. Testes fictícios de confirmação, divergência, resposta inválida e registos duplicados.
+
+## 4.0.75 — validação dos identificadores de pagamento
+Backup: `backup/antes-validacao-pagamento-4.0.75`. Substitui a comparação financeira dinâmica por leituras explícitas com NUMBER/STRING nativas e funções declaradas. Identificadores validados como números positivos em formato textual ou numérico; itp reconhece sim/true/boolean. Mantém a confirmação de fatura e bloqueio de identificadores vazios/inválidos. Testes com parâmetros equivalentes aos da imagem e dados fictícios; sem gravações reais.
