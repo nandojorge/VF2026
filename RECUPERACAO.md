@@ -245,3 +245,6 @@ Backup: `backup/antes-validacao-pagamento-4.0.75`. Substitui a comparação fina
 
 ## 4.0.76 — pré-requisitos das gravações
 Backup: `backup/antes-simulacao-gravacoes-4.0.76`. Simulação completa reproduziu pedidos com identificadores nulos quando contadores estavam por carregar. Novo pagamento consulta e valida contadores antes da primeira escrita e conserva identificadores no link. Sessão carrega contadores, negócios e fisioterapeutas antes de sincronizar; honorários usam o cliente do negócio correto, e não uma seleção global antiga. Sem gravações reais nos testes. Inclui simulações de caminhos completos, falhas e recuperação.
+
+## 4.0.77 — finalizar sessão sem reagendar
+Backup: `backup/antes-finalizar-sessao-4.0.77`. Só atualiza o horário externo quando data/hora/fisioterapeuta mudam. Marcar realizada sem alterações mantém a gravação local e honorários, sem PATCH desnecessário de horário. Cancelamento mantém a sincronização do estado. Erros indicam a etapa e deixam apenas uma mensagem, preservando recuperação. Simulação de falha externa, conclusão sem reagendamento, alteração do horário e cancelamento; nenhum registo real alterado.
