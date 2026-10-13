@@ -78,7 +78,7 @@ const session=app.logic.flows['bdb7392.ce690c8'].nodes;
 let values={pageVars:{vfSessionForm:{fisioterapeuta:' FISIO TÉSTE '}},outputs:{'vf-session-fisio-read':{records:[{fisioterapeuta:'Fisio Teste',email:'teste@example.invalid'}]}}};
 const email=evaluate(valueExpression(session['aad6024e.aae958']),values);assert.equal(email,'teste@example.invalid');values.pageVars.emailfisio=email;assert(evaluate(session['vf-session-email-valid'].inputs.condition.key,values));
 values.outputs['vf-session-fisio-read'].records=[];values.pageVars.emailfisio=evaluate(valueExpression(session['aad6024e.aae958']),values);assert(!evaluate(session['vf-session-email-valid'].inputs.condition.key,values));
-assert.equal(session['c72c7ecc.c5375'].connections['aab5c5a6-049b-4e2b-8068-aac6d1c8cab3'][0].id,'vf-session-fisio-read');
+assert.equal(session['vf-session-form'].connections['aab5c5a6-049b-4e2b-8068-aac6d1c8cab3'][0].id,'vf-session-counters');assert.equal(session['vf-session-business-read-assign'].connections['60c0a221-8687-465d-9249-53c98311db9b'][0].id,'vf-session-fisio-read');
 const pay=app.logic.flows['3dd3bda.213db3d'].nodes;
 values={pageVars:{valor:100,datapagamento:'2026-10-12',conta:'Teste',itp:false,numerofatura:'FT 2026/123',datafatura:'',fatura:'sim'},params:{valor:'100',datapagamento:'2026-10-12',conta:'Teste',itp:'false',codigopagamentos:'9054',codigodespesa:'null'}};
 assert(evaluate(pay['vf-pay-valid-identifiers'].inputs.condition.key,values));values.pageVars.vfPayInvoiceOnly=evaluate(valueExpression(pay['vf-pay-invoice-only']),values);assert.equal(values.pageVars.vfPayInvoiceOnly,true);assert(evaluate(pay['vf-pay-after-payment'].inputs.condition.key,values));

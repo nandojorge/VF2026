@@ -242,3 +242,6 @@ Backup: `backup/antes-confirmacao-fatura-4.0.74`. Após editar um pagamento, con
 
 ## 4.0.75 — validação dos identificadores de pagamento
 Backup: `backup/antes-validacao-pagamento-4.0.75`. Substitui a comparação financeira dinâmica por leituras explícitas com NUMBER/STRING nativas e funções declaradas. Identificadores validados como números positivos em formato textual ou numérico; itp reconhece sim/true/boolean. Mantém a confirmação de fatura e bloqueio de identificadores vazios/inválidos. Testes com parâmetros equivalentes aos da imagem e dados fictícios; sem gravações reais.
+
+## 4.0.76 — pré-requisitos das gravações
+Backup: `backup/antes-simulacao-gravacoes-4.0.76`. Simulação completa reproduziu pedidos com identificadores nulos quando contadores estavam por carregar. Novo pagamento consulta e valida contadores antes da primeira escrita e conserva identificadores no link. Sessão carrega contadores, negócios e fisioterapeutas antes de sincronizar; honorários usam o cliente do negócio correto, e não uma seleção global antiga. Sem gravações reais nos testes. Inclui simulações de caminhos completos, falhas e recuperação.
