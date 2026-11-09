@@ -49,8 +49,9 @@ function isAdmin(){return !!state.member&&['owner','admin'].includes(state.membe
 function sheetCount(name){return Number(state.meta[name]?.row_count||0);}
 function statusTag(v){const s=String(v||'').toLowerCase();let tone='';if(/pago|convert|fech|realizada|sim|true/.test(s))tone='ok';else if(/pend|abert|contact|marcação|por pagar|parcial/.test(s))tone='warn';else if(/cancel|não convert|nao convert/.test(s))tone='danger';return '<span class="tag '+tone+'">'+esc(v||'—')+'</span>';}
 function loginView(error){
- app.innerHTML='<div class="login"><form id="loginForm" class="login-card"><div class="tag info">ACESSO RESTRITO</div><h1>Vivus CRM</h1><p>Dados reais. Apenas utilizadores autorizados.</p><div class="field"><label>Email</label><input name="email" type="email" autocomplete="username" required></div><div class="field"><label>Password</label><input name="password" type="password" autocomplete="current-password" required></div><button class="btn primary" style="width:100%" type="submit">Entrar</button>'+(error?'<div class="login-error">'+esc(error)+'</div>':'')+'</form></div>';
+ app.innerHTML='<div class="login"><form id="loginForm" class="login-card"><div class="tag info">ACESSO RESTRITO</div><h1>Vivus CRM</h1><p>Dados reais. Apenas utilizadores autorizados.</p><div class="field"><label>Email</label><input name="email" type="email" autocomplete="username" required></div><div class="field"><label>Password</label><input name="password" type="password" autocomplete="current-password" required></div><button class="btn primary" style="width:100%" type="submit">Entrar</button><button class="btn" style="width:100%;margin-top:8px" type="button" id="forgotBtn">Esqueci-me da password</button>'+(error?'<div class="login-error">'+esc(error)+'</div>':'')+'</form></div>';
  document.getElementById('loginForm').addEventListener('submit',login);
+ document.getElementById('forgotBtn').addEventListener('click',forgotPassword);
 }
 async function login(ev){
  ev.preventDefault();const fd=new FormData(ev.currentTarget);const btn=ev.currentTarget.querySelector('button');btn.disabled=true;btn.textContent='A entrar…';
@@ -86,6 +87,7 @@ async function bootstrap(){
  app.innerHTML='<div class="loading">A carregar dados reais…</div>';
  const {data:{session}}=await supabase.auth.getSession();
  if(!session){loginView();return;}
+ if(window.location.hash.includes('type=recovery')){state.session=session;state.user=session.user;recoveryView();return;}
  state.session=session;state.user=session.user;
  const {data:member,error:me}=await supabase.from('app_members').select('role,active').eq('user_id',session.user.id).maybeSingle();
  if(me||!member||!member.active){await supabase.auth.signOut();loginView('Esta conta não tem acesso ao Vivus CRM.');return;}
