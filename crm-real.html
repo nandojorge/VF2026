@@ -19,6 +19,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.119.0';
 
 const SUPABASE_URL='https://zrqjusfmgtvneqhpkjxs.supabase.co';
 const SUPABASE_KEY='sb_publishable_gdZT4r29BaKKTsns8OVb6Q_cxsDjMCz';
+const APP_URL='https://nandojorge.github.io/VF2026/crm-real.html';
 const SOURCE_ID='1ncCxxt5PEp6OXk8lRKo9uPhQYbhe8Ri3zeTbpBjyD1Y';
 const SOURCE_URL='https://docs.google.com/spreadsheets/d/'+SOURCE_ID+'/edit';
 const SOURCE_EXPORT='https://docs.google.com/spreadsheets/d/'+SOURCE_ID+'/export?format=xlsx';
@@ -56,6 +57,29 @@ async function login(ev){
  const {error}=await supabase.auth.signInWithPassword({email:String(fd.get('email')||'').trim(),password:String(fd.get('password')||'')});
  if(error){loginView('Não foi possível iniciar sessão. Confirma o email e a password.');return;}
  await bootstrap();
+}
+async function forgotPassword(){
+ const email=String(document.querySelector('#loginForm input[name="email"]')?.value||'').trim();
+ if(!email){loginView('Escreve primeiro o teu email.');return;}
+ const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:APP_URL});
+ if(error){loginView('Não foi possível enviar o email de recuperação: '+error.message);return;}
+ loginView('Enviámos um email para definires uma nova password. Abre o link nesse email.');
+}
+function recoveryView(){
+ app.innerHTML='<div class="login"><form id="recoveryForm" class="login-card"><div class="tag info">NOVA PASSWORD</div><h1>Vivus CRM</h1><p>Define uma nova password para continuar.</p><div class="field"><label>Nova password</label><input name="password" type="password" minlength="8" autocomplete="new-password" required></div><div class="field"><label>Confirmar password</label><input name="confirm" type="password" minlength="8" autocomplete="new-password" required></div><button class="btn primary" style="width:100%" type="submit">Guardar nova password</button></form></div>';
+ document.getElementById('recoveryForm').addEventListener('submit',updateRecoveryPassword);
+}
+async function updateRecoveryPassword(ev){
+ ev.preventDefault();
+ const fd=new FormData(ev.currentTarget),password=String(fd.get('password')||''),confirm=String(fd.get('confirm')||'');
+ if(password.length<8){alert('A password deve ter pelo menos 8 caracteres.');return;}
+ if(password!==confirm){alert('As passwords não coincidem.');return;}
+ const {error}=await supabase.auth.updateUser({password});
+ if(error){alert('Não foi possível atualizar a password: '+error.message);return;}
+ await supabase.auth.signOut();
+ history.replaceState(null,'',APP_URL);
+ alert('Password atualizada. Já podes entrar com a nova password.');
+ state.session=null;state.user=null;state.member=null;loginView();
 }
 async function logout(){await supabase.auth.signOut();state.session=null;state.user=null;state.member=null;loginView();}
 async function bootstrap(){
@@ -187,7 +211,7 @@ async function syncFromFile(){
    state.syncing=false;setSync('Falhou: '+String(e.message||e),0);alert('A atualização não foi ativada. Os dados anteriores continuam intactos.');
  }
 }
-supabase.auth.onAuthStateChange(function(_event,session){if(!session&&state.session){state.session=null;state.user=null;state.member=null;loginView();}});
+supabase.auth.onAuthStateChange(function(event,session){if(event==='PASSWORD_RECOVERY'){state.session=session;state.user=session?.user||null;recoveryView();return;}if(!session&&state.session){state.session=null;state.user=null;state.member=null;loginView();}});
 bootstrap().catch(function(e){console.error(e);loginView('Não foi possível ligar ao CRM.');});
 </script>
 </body>
